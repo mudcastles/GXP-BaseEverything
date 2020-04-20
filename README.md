@@ -1,0 +1,2 @@
+# GXP-BaseEverything
+基础组件库，包含了MVP、MVVM框架的基础Activity和Fragment，支持沉浸式、双击back键退出应用、侧滑结束Activity、Fragment的back键监听等，总结了项目中用到的所有的自定义View和ViewGroup，总结了一些工具类。后续会不断完善和改进。
