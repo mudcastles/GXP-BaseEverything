@@ -1,0 +1,40 @@
+//Android Studio统一管理依赖版本号引用配置
+ext {
+    //修改compileSdkVersion并不会影响我们的我们生成的app在手机先的行为。最理想的情况就是把compileSdkVersion设置到最高。
+    globalCompileSdkVersion = 29
+    //构建工具的版本号是多少，规则是可以用高的构建工具来构建低版本Sdk的工程。使用build-tools目录中的最大版本号即可
+    globalBuildToolsVersion = "29.0.3"
+    //targetSdkVersion的设置主要是当系统版本高于设置的target的时候。然后targetSdkVersion最好和compileSdkVersion一样。
+    globalTargetSdkVersion = 29
+    //这个就是程序运行的最低的要求的Sdk版本号，在低于这个版本号的手机设备上无法安装。
+    globalMinSdkVersion = 21
+
+    supportLibraryVersion = "1.1.0"
+
+    /*=================================常用的引用============================================*/
+    //supportLibVersion 的头数字是和targetSdkVersion 版本一样的。
+    androidDependencies = [
+            appcompat       : "androidx.appcompat:appcompat:${supportLibraryVersion}",
+            design          : "com.google.android.material:material:${supportLibraryVersion}",
+            recyclerView    : "androidx.recyclerview:recyclerview:${supportLibraryVersion}",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:${supportLibraryVersion}",
+            core            : "androidx.core:core-ktx:${supportLibraryVersion}",
+    ]
+
+    /*=================================module中公共用到的引用============================================*/
+    globalDependencies = [
+            multidex               : "com.android.support:multidex:1.0.3",
+            //constraintLayout引用
+            constraintLayout       : "com.android.support.constraint:constraint-layout:1.1.2",
+            //glide的引用
+            glide                  : "com.github.bumptech.glide:glide:4.7.1",
+            eventbus               : "org.greenrobot:eventbus:3.1.1",
+            rxpermissions          : "com.github.tbruyelle:rxpermissions:0.10.2",
+            rxjava2                : "io.reactivex.rxjava2:rxjava:2.2.15",
+            numberprogressbar      : "com.daimajia.numberprogressbar:library:1.4@aar",
+            shapeLoadingView       : "com.github.zzz40500:android-shapeLoadingView:1.0.3.2",
+            immersionbar           : "com.gyf.immersionbar:immersionbar:3.0.0",
+            immersionbar_components: "com.gyf.immersionbar:immersionbar-components:3.0.0",
+            immersionbar_ktx       : "com.gyf.immersionbar:immersionbar-ktx:3.0.0",
+    ]
+}

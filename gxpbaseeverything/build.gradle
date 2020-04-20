@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
+
+apply from: '../version.gradle'
+android {
+    compileSdkVersion globalCompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion globalMinSdkVersion
+        targetSdkVersion globalTargetSdkVersion
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+dependencies {
+    implementation globalDependencies.multidex
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation androidDependencies.appcompat
+    implementation androidDependencies.core
+
+
+    /** -----------------------沉浸式依赖----------------------------------------*/
+    // 基础依赖包，必须要依赖
+    implementation globalDependencies.immersionbar
+    // fragment快速实现（可选）
+    implementation globalDependencies.immersionbar_components
+    // kotlin扩展（可选）
+    implementation globalDependencies.immersionbar_ktx
+    /** -----------------------沉浸式依赖----------------------------------------*/
+
+    //EventBus
+    implementation globalDependencies.eventbus
+    //RxPermission支持
+    implementation globalDependencies.rxpermissions
+    implementation globalDependencies.rxjava2
+    implementation androidDependencies.recyclerView
+    implementation globalDependencies.numberprogressbar
+
+    implementation globalDependencies.shapeLoadingView
+}
+
+//添加
+publish {
+    userOrg = 'mudcastles'//bintray.com用户名
+    groupId = 'com.peng.gxpbaseeverything'//jcenter上的路径
+    artifactId = 'GXPBaseEverything'//项目名称
+    publishVersion = '1.0.0'//版本号
+    desc = '汇集侧滑返回上一页面、MVP和MVVM支持、沉浸式、Fragment返回键监听、双击退出、项目用到的自定义View和ViewGroup、一些工具类等为一体的Android开发基库。'
+//描述，不重要
+    website = 'https://github.com/mudcastles/GXPLibrary-MVVM'//网站，不重要
+}
