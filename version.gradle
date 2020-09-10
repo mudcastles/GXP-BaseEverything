@@ -29,8 +29,8 @@ ext {
             //glide的引用
             glide                  : "com.github.bumptech.glide:glide:4.7.1",
             eventbus               : "org.greenrobot:eventbus:3.1.1",
-            rxpermissions          : "com.github.tbruyelle:rxpermissions:0.10.2",
-            rxjava2                : "io.reactivex.rxjava2:rxjava:2.2.15",
+            rxpermissions          : "com.github.tbruyelle:rxpermissions:0.12",
+            rxjava3                : "io.reactivex.rxjava3:rxjava:3.0.6",
             numberprogressbar      : "com.daimajia.numberprogressbar:library:1.4@aar",
             shapeLoadingView       : "com.github.zzz40500:android-shapeLoadingView:1.0.3.2",
             immersionbar           : "com.gyf.immersionbar:immersionbar:3.0.0",

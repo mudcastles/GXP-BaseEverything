@@ -15,7 +15,7 @@ import com.peng.gxpbaseeverything.backKey.FragmentBackHandler
 import com.peng.gxpbaseeverything.util.LoadingDialogHelper
 import com.peng.gxpbaseeverything.util.RxRetrofitHelper
 import com.peng.gxpbaseeverything.view.custom.view.LoadingDialog
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 /**
  * 不支持懒加载的Fragment基类

@@ -14,7 +14,7 @@ import androidx.annotation.Nullable
 import com.peng.gxpbaseeverything.eventBus.MessageEvent
 import com.peng.gxpbaseeverything.util.SomeCompat
 import com.peng.gxpbaseeverything.view.custom.view.swipebacklayout.app.SwipeBackActivity
-import com.tbruyelle.rxpermissions2.RxPermissions
+import com.tbruyelle.rxpermissions3.RxPermissions
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -29,7 +29,6 @@ abstract class GXPBaseActivity : SwipeBackActivity() {
         mActivity = this
         setContentView(getRootLayoutId())
         EventBus.getDefault().register(this)
-        rxPermissions = RxPermissions(this)
         //初始化数据
         initData()
         //view与数据绑定
@@ -138,7 +137,7 @@ abstract class GXPBaseActivity : SwipeBackActivity() {
         SomeCompat.polishDrawable(this@GXPBaseActivity, drawable, color)
     }
 
-    lateinit var rxPermissions: RxPermissions
+    var rxPermissions: RxPermissions? = null
 
     /**
      * 检查权限，获取到权限后调用
@@ -149,7 +148,8 @@ abstract class GXPBaseActivity : SwipeBackActivity() {
         onHasPermissions: () -> Unit,
         onDefinedPermissiong: () -> Unit
     ) {
-        rxPermissions.request(* permissionList.toTypedArray())
+        if (rxPermissions == null) rxPermissions = RxPermissions(this)
+        rxPermissions!!.request(* permissionList.toTypedArray())
             .subscribe {
                 if (it) {
                     onHasPermissions.invoke()

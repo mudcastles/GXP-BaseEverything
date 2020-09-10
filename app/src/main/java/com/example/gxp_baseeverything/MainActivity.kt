@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.gxp_baseeverything.databinding.ActivityMainBinding
 import com.example.gxp_baseeverything.databinding.DrawstartBinding
+import com.example.gxp_baseeverything.model.*
 import com.peng.gxpbaseeverything.view.activity.mvvm.GXPToolbarDrawerActivity
 
 class MainActivity :
@@ -13,8 +14,6 @@ class MainActivity :
     private lateinit var mViewModel: MyModel
     override fun onContentLayoutInflated() {
         super.onContentLayoutInflated()
-
-
         //这才是正确用法
         mViewModel = ViewModelProvider(
             application()!!,
@@ -36,6 +35,18 @@ class MainActivity :
             Log.e("mEdittextStr数据变化了", "${mViewModel.mEdittextStr.value ?: "......."}")
         })
         mViewModel.mString.value = "呵呵哒lmklllkkl"
+
+
+
+        //测试自定义view的双向绑定
+        val model = MultiModel(First(Second(Third(Fourth(null)))),null)
+        mViewModel.mModel.value = model
+        mViewModel.mModel.observe(this, Observer {
+            Log.e("自定义View双向绑定",it.first.second.third.fourth.string?:"null")
+        })
+        mViewModel.mCheckBoxChecked.observe(this, Observer {
+            Log.e("checkBox",it.toString())
+        })
 
     }
 
