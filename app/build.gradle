@@ -44,5 +44,5 @@ dependencies {
 
     implementation globalDependencies.multidex
     implementation project(":gxpbaseeverything")
-//    implementation 'com.peng.gxpbaseeverything:GXPBaseEverything:1.0.0'
+//    implementation 'com.peng.gxpbaseeverything:GXPBaseEverything:2.0.0'
 }
