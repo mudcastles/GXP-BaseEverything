@@ -15,7 +15,7 @@ allprojects {
 ```groovy
 dependencies {
     //其他代码
-    implementation 'com.peng.gxpbaseeverything:GXPBaseEverything:1.0.0'
+    implementation 'com.peng.gxpbaseeverything:GXPBaseEverything:2.0.3'
 }
 ```
 

@@ -34,22 +34,21 @@ dependencies {
 
     /** -----------------------沉浸式依赖----------------------------------------*/
     // 基础依赖包，必须要依赖
-    implementation globalDependencies.immersionbar
+    api globalDependencies.immersionbar
     // fragment快速实现（可选）
-    implementation globalDependencies.immersionbar_components
+    api globalDependencies.immersionbar_components
     // kotlin扩展（可选）
-    implementation globalDependencies.immersionbar_ktx
+    api globalDependencies.immersionbar_ktx
     /** -----------------------沉浸式依赖----------------------------------------*/
 
     //EventBus
-    implementation globalDependencies.eventbus
+    api globalDependencies.eventbus
     //RxPermission支持
-    implementation globalDependencies.rxpermissions
-    implementation globalDependencies.rxjava3
-    implementation androidDependencies.recyclerView
-    implementation globalDependencies.numberprogressbar
+    api globalDependencies.rxpermissions
+    api globalDependencies.rxjava3
+    api androidDependencies.recyclerView
+    api globalDependencies.constraintLayout
 
-    implementation globalDependencies.shapeLoadingView
 }
 
 

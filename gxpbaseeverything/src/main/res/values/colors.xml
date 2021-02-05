@@ -10,4 +10,6 @@
     <color name="gray">#808080</color>
     <color name="eye_blue">#ff2081ff</color>
     <color name="red">#ffff0000</color>
+    <color name="common_dialog_btn_gray">#ff727272</color>
+    <color name="common_dialog_btn_blue">#ff1088f2</color>
 </resources>

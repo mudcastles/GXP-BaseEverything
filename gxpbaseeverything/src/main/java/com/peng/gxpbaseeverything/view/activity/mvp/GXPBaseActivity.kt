@@ -150,12 +150,14 @@ abstract class GXPBaseActivity : SwipeBackActivity() {
     ) {
         if (rxPermissions == null) rxPermissions = RxPermissions(this)
         rxPermissions!!.request(* permissionList.toTypedArray())
-            .subscribe {
+            .subscribe({
                 if (it) {
                     onHasPermissions.invoke()
                 } else {
                     onDefinedPermissiong.invoke()
                 }
-            }
+            },{
+                it.printStackTrace()
+            })
     }
 }
