@@ -26,11 +26,32 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="SubjectOptionView">
+        <attr name="normalBackground" format="reference" />
+        <attr name="correctBackground" format="reference" />
+        <attr name="wrongBackground" format="reference" />
+        <attr name="normalDrawable" format="reference" />
+        <attr name="correctDrawable" format="reference" />
+        <attr name="wrongDrawable" format="reference" />
+        <attr name="normalTextAppearance_SubjectOptionView" format="reference" />
+        <attr name="correctTextAppearance_SubjectOptionView" format="reference" />
+        <attr name="wrongTextAppearance_SubjectOptionView" format="reference" />
+        <attr name="drawablePosition">
+            <enum name="start" value="0" />
+            <enum name="top" value="1" />
+            <enum name="end" value="2" />
+            <enum name="bottom" value="3" />
+        </attr>
+        <attr name="drawableSize" format="dimension" />
+
+    </declare-styleable>
     <declare-styleable name="SubjectOptionLayout">
         <attr name="maxSelectNum" format="integer" />
         <attr name="optionMargin" format="dimension" />
-        <attr name="textSize" format="dimension" />
-        <attr name="drawableSize" format="dimension" />
+        <attr name="subjectOptionViewLayout" format="reference" />
+        <attr name="normalTextAppearance_SubjectOptionLayout" format="reference" />
+        <attr name="correctTextAppearance_SubjectOptionLayout" format="reference" />
+        <attr name="wrongTextAppearance_SubjectOptionLayout" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="HorizontalBarChart">

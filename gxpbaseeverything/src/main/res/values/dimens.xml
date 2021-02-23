@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="common_alert_tips_width" type="dimen" format="float">340.0dip</item>
+    <dimen name="common_alert_tips_width">340.0dip</dimen>
 </resources>

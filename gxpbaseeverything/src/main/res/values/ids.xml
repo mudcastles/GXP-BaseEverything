@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="OPTION_INDEX" type="id" />
+    <item name="subject_option_text" type="id" />
+    <item name="subject_option_position" type="id" />
+    <item name="subject_option_status" type="id" />
 </resources>

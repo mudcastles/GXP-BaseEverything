@@ -13,6 +13,10 @@ interface RxRetrofitHelper {
         mCompositeDisposable!!.add(disposable)
     }
 
+    fun removeDisposable(disposable: Disposable) {
+        mCompositeDisposable?.remove(disposable)
+    }
+
     //在界面退出等需要解绑观察者的情况下调用此方法统一解绑，防止Rx造成的内存泄漏
     fun dispose() {
         if (mCompositeDisposable != null && !mCompositeDisposable!!.isDisposed) {

@@ -178,4 +178,19 @@
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
     <!--    com.mingle.widget.LoadingView      -->
+
+    <style name="SubjectOptionNormalTextAppearance">
+        <item name="android:textColor">#459bef</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SubjectOptionCorrectTextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SubjectOptionWrongTextAppearance">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>
