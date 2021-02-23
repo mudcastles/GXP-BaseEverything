@@ -1,11 +1,11 @@
-package com.peng.onlineeducationxfgs.view.custom
+package com.peng.gxpbaseeverything.view.custom.view.subjectOption
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.annotation.DrawableRes
 import androidx.annotation.StyleRes
-import com.peng.onlineeducationxfgs.R
+import com.peng.gxpbaseeverything.R
 
 
 class SubjectOptionView : androidx.appcompat.widget.AppCompatTextView {

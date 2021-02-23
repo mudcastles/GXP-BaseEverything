@@ -13,7 +13,6 @@ import androidx.core.view.marginBottom
 import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import com.peng.gxpbaseeverything.R
-import com.peng.onlineeducationxfgs.view.custom.SubjectOptionView
 
 /**
  * 题目选项View
