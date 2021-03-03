@@ -19,4 +19,10 @@ interface LoadingDialogHelper {
             dialog!!.dismiss()
         }
     }
+
+    fun updateMessage(message: String) {
+        if (dialog != null && dialog!!.isShowing) {
+            dialog!!.updateMessage(message)
+        }
+    }
 }

@@ -29,6 +29,10 @@ class LoadingDialog(
         super.dismiss()
     }
 
+    fun updateMessage(newMessage: String) {
+        tv_loading_txt.text = newMessage
+    }
+
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
