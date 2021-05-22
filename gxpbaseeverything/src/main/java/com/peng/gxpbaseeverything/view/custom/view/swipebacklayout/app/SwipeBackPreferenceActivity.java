@@ -37,12 +37,12 @@ public class SwipeBackPreferenceActivity extends PreferenceActivity implements S
     }
 
     @Override
-    public void setSwipeBackEnable(boolean enable) {
-        getSwipeBackLayout().setEnableGesture(enable);
+    public void scrollToFinishActivity() {
+        getSwipeBackLayout().scrollToFinishActivity();
     }
 
     @Override
-    public void scrollToFinishActivity() {
-        getSwipeBackLayout().scrollToFinishActivity();
+    public boolean isSwipeBackEnable() {
+        return true;
     }
 }

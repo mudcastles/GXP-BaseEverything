@@ -22,9 +22,9 @@ abstract class GXPToolbarDrawerActivity : GXPDrawerActivity() {
 
     final override fun getContentRootLayoutId(): Int = R.layout.mvvm_gxp_activity_toolbar
 
+    override fun isSwipeBackEnable(): Boolean =false
     override fun initView() {
         super.initView()
-        setSwipeBackEnable(false)
 
         com_peng_baseeverthing_viewStub.apply {
             layoutResource = getContentLayoutId()

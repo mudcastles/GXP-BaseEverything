@@ -10,10 +10,9 @@ abstract class GXPDrawerActivity : GXPBaseActivity() {
 
     final override fun getRootLayoutId(): Int = R.layout.mvp_gxp_activity_drawer
 
+    override fun isSwipeBackEnable(): Boolean = false
     override fun initView() {
         super.initView()
-        setSwipeBackEnable(false)
-
         com_peng_baseeverthing_viewStubContent.apply {
             layoutResource = getContentRootLayoutId()
             inflate()

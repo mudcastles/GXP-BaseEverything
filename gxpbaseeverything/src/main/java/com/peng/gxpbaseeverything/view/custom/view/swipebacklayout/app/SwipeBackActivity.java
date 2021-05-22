@@ -15,14 +15,18 @@ public class SwipeBackActivity extends AppCompatActivity implements SwipeBackAct
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHelper = new SwipeBackActivityHelper(this);
-        mHelper.onActivityCreate();
+        if (isSwipeBackEnable()) {
+            mHelper = new SwipeBackActivityHelper(this);
+            mHelper.onActivityCreate();
+        }
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mHelper.onPostCreate();
+        if (isSwipeBackEnable()) {
+            mHelper.onPostCreate();
+        }
     }
 
     @Override
@@ -35,17 +39,21 @@ public class SwipeBackActivity extends AppCompatActivity implements SwipeBackAct
 
     @Override
     public SwipeBackLayout getSwipeBackLayout() {
-        return mHelper.getSwipeBackLayout();
+        if (mHelper != null)
+            return mHelper.getSwipeBackLayout();
+        else return null;
     }
 
     @Override
-    public void setSwipeBackEnable(boolean enable) {
-        getSwipeBackLayout().setEnableGesture(enable);
+    public boolean isSwipeBackEnable() {
+        return true;
     }
 
     @Override
     public void scrollToFinishActivity() {
-        Utils.convertActivityToTranslucent(this);
-        getSwipeBackLayout().scrollToFinishActivity();
+        if (isSwipeBackEnable()) {
+            Utils.convertActivityToTranslucent(this);
+            getSwipeBackLayout().scrollToFinishActivity();
+        }
     }
 }

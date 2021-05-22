@@ -101,12 +101,13 @@ abstract class GXPDrawerActivity<T : ViewDataBinding, START_DRAWER : ViewDataBin
         onEndDrawerLayoutInflated()
     }
 
+    override fun isSwipeBackEnable(): Boolean = false
+
     /**
      * 为了防止这部分代码被修改，不允许重写该方法
      */
     final override fun initView() {
         super.initView()
-        setSwipeBackEnable(false)
         initStartDrawerDataBinding()
         initEndDrawerDataBinding()
     }
