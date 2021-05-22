@@ -48,6 +48,8 @@ dependencies {
     api globalDependencies.rxjava3
     api androidDependencies.recyclerView
     api globalDependencies.constraintLayout
+    compileOnly globalDependencies.numberprogressbar
+    compileOnly globalDependencies.nineoldandroids
 
 }
 
