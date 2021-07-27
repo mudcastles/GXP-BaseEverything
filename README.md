@@ -1,9 +1,6 @@
 # GXP-BaseEverything [![](https://www.jitpack.io/v/com.gitee.mudcastles/gxp-base-everything.svg)](https://www.jitpack.io/#com.gitee.mudcastles/gxp-base-everything)
 基础组件库，包含了MVP、MVVM框架的基础Activity和Fragment，支持沉浸式、双击back键退出应用、侧滑结束Activity、Fragment的back键监听等，总结了项目中用到的所有的自定义View和ViewGroup，总结了一些工具类。后续会不断完善和改进。
 
-# Publish
-Maven Central：[OSSRH-69279](https://issues.sonatype.org/browse/OSSRH-69279)
-
 # Install
 1. 在Project的build.gradle中添加代码：
 ```groovy
