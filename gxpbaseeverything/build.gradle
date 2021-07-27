@@ -44,7 +44,7 @@ dependencies {
     //EventBus
     api globalDependencies.eventbus
     //RxPermission支持
-    api globalDependencies.rxpermissions
+    api globalDependencies.XXPermissions
     api globalDependencies.rxjava3
     api androidDependencies.recyclerView
     api globalDependencies.constraintLayout

@@ -21,6 +21,18 @@ dependencies {
 }
 ```
 
+# 用到且已经依赖的库
+1. EventBus：org.greenrobot:eventbus:3.1.1
+2. 沉浸式：com.gyf.immersionbar:immersionbar:3.0.0
+             com.gyf.immersionbar:immersionbar-components:3.0.0
+             com.gyf.immersionbar:immersionbar-ktx:3.0.0
+3. 权限：com.github.getActivity:XXPermissions:11.6
+4. RxJava3：io.reactivex.rxjava3:rxjava:3.0.6
+
+# 可能用到且需要自己添加依赖的库
+1. 进度条：com.daimajia.numberprogressbar:library:1.4@aar
+2. 动画：com.nineoldandroids:library:2.4.0
+
 # 使用说明
 基库支持MVP和MVVM两种框架，由于MVC框架太过落后且无需封装，因此并未添加MVC的封装。
 ## 使用MVP框架
