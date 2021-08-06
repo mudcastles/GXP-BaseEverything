@@ -1,19 +1,24 @@
 package com.peng.gxpbaseeverything.util;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Process;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -112,28 +117,52 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 return;
             }
         }
-        File dir = new File(PATH);
-        //如果目录下没有文件夹，就创建文件夹
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
         //得到当前年月日时分秒
         long current = System.currentTimeMillis();
         String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(current));
-        //在定义的Crash文件夹下创建文件
-        File file = new File(PATH + FILE_NAME + time + FILE_NAME_SUFFIX);
+        String fileName = FILE_NAME + time + FILE_NAME_SUFFIX;
 
-        try {
-            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
-            //写入时间
-            pw.println(time);
-            //写入手机信息
-            dumpPhoneInfo(pw);
-            pw.println();//换行
-            e.printStackTrace(pw);
-            pw.close();//关闭输入流
-        } catch (Exception e1) {
-            Log.e(TAG, "dump crash info failed");
+        OutputStreamWriter outputStreamWriter = null;
+        if (isLegacyExternalStorage()) {
+            File dir = new File(PATH);
+            //如果目录下没有文件夹，就创建文件夹
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            //在定义的Crash文件夹下创建文件
+            File file = new File(PATH + fileName);
+            outputStreamWriter = new FileWriter(file);
+        } else {
+            Uri external = MediaStore.Files.getContentUri("external");
+            ContentValues values = new ContentValues();
+            // 需要指定文件信息时，非必须
+            values.put(MediaStore.Images.Media.DESCRIPTION, "This is an bug crash log");
+            values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
+            //如果添加下面一行，会自动生成txt文件
+//            values.put(MediaStore.Images.Media.MIME_TYPE, "text/plain");
+            values.put(MediaStore.Images.Media.TITLE, fileName);
+            values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + "/Crash/log");
+
+            Uri insert = mContext.getContentResolver().insert(external, values);
+            if (insert != null)
+                outputStreamWriter = new OutputStreamWriter(mContext.getContentResolver().openOutputStream(insert));
+        }
+
+        if (outputStreamWriter != null) {
+            try {
+                PrintWriter pw = new PrintWriter(new BufferedWriter(outputStreamWriter));
+                //写入时间
+                pw.println(time);
+                //写入手机信息
+                dumpPhoneInfo(pw);
+                pw.println();//换行
+                e.printStackTrace(pw);
+                pw.close();//关闭输入流
+            } catch (Exception e1) {
+                Log.e(TAG, "dump crash info failed");
+            }
+        } else {
+            Log.e(TAG, "outputStreamWriter == null");
         }
 
     }
@@ -180,4 +209,17 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     }
 
+    /**
+     * 判断是否需要适配分区存储
+     *
+     * @return 是否使用传统存储方式。true:传统存储方式；false:分区存储
+     */
+    private boolean isLegacyExternalStorage() {
+        // 使用Environment.isExternalStorageLegacy()来检查APP的运行模式
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+                !Environment.isExternalStorageLegacy()) {
+            return false;
+        }
+        return true;
+    }
 }

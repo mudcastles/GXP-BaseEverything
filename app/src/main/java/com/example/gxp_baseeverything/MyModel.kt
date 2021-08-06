@@ -1,7 +1,9 @@
 package com.example.gxp_baseeverything
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
@@ -24,7 +26,9 @@ class MyModel(application: Application) : AndroidViewModel(application) {
             Intent(
                 getApplication(),
                 SecondActivity::class.java
-            )
+            ).apply {
+                addFlags(FLAG_ACTIVITY_NEW_TASK)
+            }
         )
     }
 

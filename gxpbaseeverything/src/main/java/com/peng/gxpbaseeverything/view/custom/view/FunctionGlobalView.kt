@@ -195,12 +195,11 @@ class FunctionGlobalView : View {
                     setShowMode(ShowMode.BUTTON)
                     return true
                 }
-            } else {
-
+            } else if(innerButtonPath !=null){
                 //计算path的边界
-                innerButtonPath?.computeBounds(r, true)
+                innerButtonPath!!.computeBounds(r, true)
                 region.setPath(
-                    innerButtonPath, Region(
+                    innerButtonPath!!, Region(
                         r.left.toInt(), r.top.toInt(),
                         r.right.toInt(), r.bottom.toInt()
                     )

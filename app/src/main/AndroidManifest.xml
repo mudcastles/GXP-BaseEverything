@@ -3,7 +3,7 @@
     package="com.example.gxp_baseeverything">
 
     <application
-        android:name="com.peng.gxpbaseeverything.view.GXPBaseApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
