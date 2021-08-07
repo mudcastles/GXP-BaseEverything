@@ -17,6 +17,14 @@ dependencies {
     implementation 'com.gitee.mudcastles:gxp-base-everything:Tag'
 }
 ```
+或
+```groovy
+dependencies {
+    //其他代码
+    implementation 'com.github.mudcastles:GXP-BaseEverything:Tag'
+}
+```
+请使用最新版本！！！
 
 # 用到且已经依赖的库
 1. EventBus：org.greenrobot:eventbus:3.1.1
