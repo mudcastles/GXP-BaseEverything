@@ -7,11 +7,26 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.gxp_baseeverything.databinding.ActivityMainBinding
 import com.example.gxp_baseeverything.databinding.DrawstartBinding
 import com.example.gxp_baseeverything.model.*
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
+import com.peng.gxpbaseeverything.util.AndroidVersionAdaptUtil
 import com.peng.gxpbaseeverything.view.activity.mvvm.GXPToolbarDrawerActivity
+import java.util.jar.Manifest
 
 class MainActivity :
     GXPToolbarDrawerActivity<ActivityMainBinding, DrawstartBinding, ViewDataBinding>() {
     private lateinit var mViewModel: MyModel
+    override fun initData() {
+        super.initData()
+        if (AndroidVersionAdaptUtil.isLegacyExternalStorage()) {
+            //Android 不使用分区存储时需要获取权限
+            XXPermissions.with(this).permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .request { permissions, all ->
+
+                }
+        }
+    }
+
     override fun onContentLayoutInflated() {
         super.onContentLayoutInflated()
         //这才是正确用法
@@ -37,15 +52,14 @@ class MainActivity :
         mViewModel.mString.value = "呵呵哒lmklllkkl"
 
 
-
         //测试自定义view的双向绑定
-        val model = MultiModel(First(Second(Third(Fourth(null)))),null)
+        val model = MultiModel(First(Second(Third(Fourth(null)))), null)
         mViewModel.mModel.value = model
         mViewModel.mModel.observe(this, Observer {
-            Log.e("自定义View双向绑定",it.first.second.third.fourth.string?:"null")
+            Log.e("自定义View双向绑定", it.first.second.third.fourth.string ?: "null")
         })
         mViewModel.mCheckBoxChecked.observe(this, Observer {
-            Log.e("checkBox",it.toString())
+            Log.e("checkBox", it.toString())
         })
 
     }

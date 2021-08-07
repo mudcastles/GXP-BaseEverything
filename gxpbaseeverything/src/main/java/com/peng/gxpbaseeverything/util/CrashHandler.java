@@ -12,9 +12,13 @@ import android.os.Environment;
 import android.os.Process;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.hjq.permissions.OnPermissionCallback;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,6 +26,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 应用异常处理类
@@ -117,13 +122,22 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 return;
             }
         }
+        writeToFile(e);
+    }
+
+    /**
+     * 真正开始写入
+     *
+     * @param e
+     */
+    private void writeToFile(Throwable e) throws IOException {
         //得到当前年月日时分秒
         long current = System.currentTimeMillis();
         String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(current));
         String fileName = FILE_NAME + time + FILE_NAME_SUFFIX;
 
         OutputStreamWriter outputStreamWriter = null;
-        if (isLegacyExternalStorage()) {
+        if (AndroidVersionAdaptUtil.isLegacyExternalStorage()) {
             File dir = new File(PATH);
             //如果目录下没有文件夹，就创建文件夹
             if (!dir.exists()) {
@@ -164,7 +178,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         } else {
             Log.e(TAG, "outputStreamWriter == null");
         }
-
     }
 
     /**
@@ -209,17 +222,5 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     }
 
-    /**
-     * 判断是否需要适配分区存储
-     *
-     * @return 是否使用传统存储方式。true:传统存储方式；false:分区存储
-     */
-    private boolean isLegacyExternalStorage() {
-        // 使用Environment.isExternalStorageLegacy()来检查APP的运行模式
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
-                !Environment.isExternalStorageLegacy()) {
-            return false;
-        }
-        return true;
-    }
+
 }
