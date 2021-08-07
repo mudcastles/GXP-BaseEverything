@@ -26,7 +26,9 @@ class MyModel(application: Application) : AndroidViewModel(application) {
             Intent(
                 getApplication(),
                 SecondActivity::class.java
-            )
+            ).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
         )
     }
 
